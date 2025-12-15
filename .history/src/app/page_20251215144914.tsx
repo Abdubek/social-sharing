@@ -1,5 +1,7 @@
 "use client";
 
+"use client";
+
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import {
@@ -74,22 +76,6 @@ export default function Home() {
     }
   }
 
-  async function onNativeShare() {
-    const result = await shareImageToInstagram({
-      imageUrl,
-      filename: "social-sharing.png",
-      title: "Share image",
-    });
-
-    if (!result.ok && result.reason !== "user_cancelled") {
-      alert(
-        result.reason === "not_supported"
-          ? "Native share is not supported in this browser. Try on mobile Safari or Chrome."
-          : `Native share failed: ${result.reason}`,
-      );
-    }
-  }
-
   return (
     <div className="min-h-screen bg-zinc-50 font-sans dark:bg-black">
       <main className="mx-auto flex min-h-screen max-w-xl items-center justify-center px-6 pb-28">
@@ -106,23 +92,13 @@ export default function Home() {
 
       <div className="fixed inset-x-0 bottom-0 z-50 border-t border-zinc-200 bg-zinc-50/90 px-6 py-4 backdrop-blur dark:border-zinc-800 dark:bg-black/80">
         <div className="mx-auto max-w-xl">
-          <div className="flex flex-col gap-3">
-            <button
-              type="button"
-              onClick={onShare}
-              className="w-full rounded-xl bg-black px-4 py-3 text-base font-semibold text-white shadow-sm hover:bg-zinc-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:bg-white dark:text-black dark:hover:bg-zinc-200 dark:focus-visible:outline-white"
-            >
-              Share (Instagram direct)
-            </button>
-
-            <button
-              type="button"
-              onClick={onNativeShare}
-              className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-3 text-base font-semibold text-black shadow-sm hover:bg-zinc-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:border-zinc-700 dark:bg-black dark:text-white dark:hover:bg-zinc-900 dark:focus-visible:outline-white"
-            >
-              Native Share (system sheet)
-            </button>
-          </div>
+          <button
+            type="button"
+            onClick={onShare}
+            className="w-full rounded-xl bg-black px-4 py-3 text-base font-semibold text-white shadow-sm hover:bg-zinc-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:bg-white dark:text-black dark:hover:bg-zinc-200 dark:focus-visible:outline-white"
+          >
+            Share
+          </button>
         </div>
       </div>
     </div>
